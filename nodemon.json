@@ -1,0 +1,10 @@
+{
+  "nodemonConfig": {
+    "delay": 1000,
+    "verbose": true,
+    "watch": ["**/dist/**/*"],
+    "ignoreRoot": [".git"],
+    "ignore": ["!**/dist/**/*"],
+    "ext": "json, js"
+  }
+}
