@@ -11,7 +11,7 @@
   },
   "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/app.js -p 3000",
+    "start": "node dist/app.js",
     "dev": "concurrently \"npm run build:watch\" \"dotenv -c -- nodemon\"",
     "build": "tsc -p .",
     "build:watch": "tsc -w -p . > /dev/null",

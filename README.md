@@ -8,6 +8,12 @@ A Slack App for Rise8
 
 ## Prerequisites
 
+### NVM
+
+```shell
+brew install nvm
+```
+
 ### Ngrok
 
 You will need Ngrok account. They are free so go and sign up [here](https://dashboard.ngrok.com/signup).
@@ -25,6 +31,7 @@ brew install --cask ngrok
 ## Local Development
 
 ```shell
+nvm use
 cp .env .env.local # See Vault for secrets
 npm install
 npm run dev
@@ -38,4 +45,11 @@ npm run tunnel
 
 ```shell
 npm run slack:load:endpoint
+```
+
+## Local Docker
+
+```shell
+docker build -t rise8/team8
+docker run --name team8 --env-file .env.local -p 3000:3000 rise8/team8:latest
 ```
