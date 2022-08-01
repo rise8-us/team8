@@ -11,12 +11,15 @@
   },
   "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/app.js -p 3000",
     "dev": "concurrently \"npm run build:watch\" \"dotenv -c -- nodemon\"",
     "build": "tsc -p .",
     "build:watch": "tsc -w -p . > /dev/null",
     "lint": "eslint . --ext .ts",
+    "lint:secrets": "./scripts/secrets-lint.sh",
     "test": "npm run lint && jest --coverage",
+    "tunnel": "ngrok http 3000 --host-header=localhost:3000",
+    "slack:load:local-endpoint": "./scripts/add-local-endpoint-to-slack.js",
     "preinstall": "git config commit.template .gitmessage",
     "prepare": "husky install"
   },
@@ -31,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "5.31.0",
     "@typescript-eslint/parser": "5.31.0",
     "concurrently": "7.3.0",
+    "detect-secrets": "^1.0.6",
     "dotenv": "16.0.1",
     "dotenv-cli": "6.0.0",
     "eslint": "8.20.0",
@@ -46,6 +50,9 @@
     "typescript": "4.7.4"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "*": [
+      "prettier --write --ignore-unknown",
+      "./scripts/secrets-lint.sh"
+    ]
   }
 }
